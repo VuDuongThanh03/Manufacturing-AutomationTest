@@ -1,0 +1,31 @@
+[
+  {
+    "id": "TC001",
+    "name": "Kiểm tra phiên bản firmware",
+    "command": "{python} -c \"print('FW:1.2.3')\"",
+    "expect_regex": "FW:\\d+\\.\\d+\\.\\d+"
+  },
+  {
+    "id": "TC002",
+    "name": "Kiểm tra số serial",
+    "command": "{python} -c \"print('SN:DUT000001')\"",
+    "expect_regex": "SN:DUT\\d{6}"
+  },
+  {
+    "id": "TC003",
+    "name": "Kiểm tra checksum (cố ý lỗi)",
+    "command": "{python} -c \"import sys; print('CHECKSUM_FAIL'); sys.exit(2)\""
+  },
+  {
+    "id": "TC004",
+    "name": "Thiết bị không phản hồi (cố ý timeout)",
+    "command": "{python} -c \"import time; time.sleep(5)\"",
+    "timeout": 1.0
+  },
+  {
+    "id": "TC005",
+    "name": "Lệnh sai phải trả mã lỗi 1",
+    "command": "{python} -c \"import sys; sys.exit(1)\"",
+    "expect_exit_code": 1
+  }
+]
